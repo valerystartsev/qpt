@@ -56,12 +56,25 @@ jobs:
       - name: make link
         run: sudo ln -s /opt/allure-2.38.1/bin/allure /usr/local/bin/allure
       - name: Generate Allure report
-        run: allure generate -c allure-results -o allure-report
+        run: allure generate -c allure-results -o _site
       - name: Save Allure report
         uses: actions/upload-artifact@v7
         with:
-          name: allure-report
-          path: allure-report
+          name: _site
+          path: _site
           retention-days: 2
+          
+ publish-report:
+   name: Report publication
+   runs-on: ubuntu-latest
+   steps:
+     - name: Download artifacts
+       uses: actions/download-artifact@v8
+     - name: Upload Pages artifact
+       uses: actions/upload-pages-artifact@v2
+     - name: Deploy to github Pages
+       id: deployment
+       uses: actions/deploy-pages@v1.2.9
+  
           
         
