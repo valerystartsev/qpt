@@ -58,7 +58,7 @@ jobs:
       - name: Generate Allure report
         run: allure generate -c allure-results -o _site
       - name: Save Allure report
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v6
         with:
           name: _site
           path: _site
@@ -71,10 +71,10 @@ jobs:
      - name: Download artifacts
        uses: actions/download-artifact@v8
      - name: Upload Pages artifact
-       uses: actions/upload-pages-artifact@v2
+       uses: actions/upload-pages-artifact@v4
      - name: Deploy to github Pages
        id: deployment
-       uses: actions/deploy-pages@v1.2.9
+       uses: actions/deploy-pages@v4
   
           
         
