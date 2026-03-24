@@ -48,11 +48,19 @@ jobs:
         run: java --version
       # 2. Install dependencies (including Allure)
       - name: Install Allure
-        run: wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz && tar -zxvf allure-2.33.0.tgz -C /opt/ && sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+        run: wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz 
+      - name: unzip tar
+        run: tar -zxvf allure-2.33.0.tgz -C /opt/
+      - name: check unzip
+        run: ls -l /opt
+      - name: make link
+        run: sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+      - name: check PATH
+        run: echo $PATH
       - name: check allure
-        run: allure --version # Verify installation
+        run: /usr/local/bin/allure --version # Verify installation
       - name: Generate Allure report
-        run: allure generate -c allure-results -o allure-report
+        run: /usr/local/bin/allure generate -c allure-results -o allure-report
       - name: Save Allure report
         uses: actions/upload-artifact@v7
         with:
