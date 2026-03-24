@@ -29,16 +29,16 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run all tests
         if: "github.event.inputs.deployment_target == 'all'"
-        run: pytest --allure=allure-results
+        run: pytest --alluredir=allure-results
       - name: Run smoke tests
         if: "github.event.inputs.deployment_target == 'smoke'"
-        run: pytest -m smoke --allure=allure-results
+        run: pytest -m smoke --alluredir=allure-results
       - name: Run regression tests
         if: "github.event.inputs.deployment_target == 'regression'"
-        run: pytest -m regression --allure=allure-results
+        run: pytest -m regression --alluredir=allure-results
       - name: Run extended tests
         if: "github.event.inputs.deployment_target == 'extended'"
-        run: pytest -m extended --allure=allure-results
+        run: pytest -m extended --alluredir=allure-results
       - name: Install Jave
         uses: actions/setup-java@v5
         with:
