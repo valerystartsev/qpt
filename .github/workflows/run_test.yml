@@ -39,18 +39,17 @@ jobs:
       - name: Run extended tests
         if: "github.event.inputs.deployment_target == 'extended'"
         run: pytest -m extended --alluredir=allure-results
-      - name: Install Jave
+      - name: Install Java
         uses: actions/setup-java@v5
         with:
           distribution: 'microsoft'
           java-version: '21'
+        run: java --version
       # 2. Install dependencies (including Allure)
       - name: Install Allure
-        run: |
-          wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz
-          tar -zxvf allure-2.33.0.tgz -C /opt/
-          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
-          allure --version # Verify installation
+        run: wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz && tar -zxvf allure-2.33.0.tgz -C /opt/ && sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+      - name: check allure
+        run: allure --version # Verify installation
       - name: Generate Allure report
         run: allure generate -c allure-results -o allure-report
       - name: Save Allure report
