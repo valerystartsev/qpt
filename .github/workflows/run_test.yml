@@ -65,7 +65,7 @@ jobs:
           retention-days: 2
           
  publish-report:
-   name: Report publication
+   name: Report publication 
    runs-on: ubuntu-latest
    steps:
      - name: Download artifacts
