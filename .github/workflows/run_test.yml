@@ -44,6 +44,7 @@ jobs:
         with:
           distribution: 'microsoft'
           java-version: '21'
+      - name: check java
         run: java --version
       # 2. Install dependencies (including Allure)
       - name: Install Allure
