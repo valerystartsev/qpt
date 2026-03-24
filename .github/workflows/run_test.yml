@@ -44,10 +44,13 @@ jobs:
         with:
           distribution: 'microsoft'
           java-version: '21'
-      - name: Set up Allure
-        uses: rickstaa/allure-action@v2
-        with:
-          allure_version: '2.33.0'
+      # 2. Install dependencies (including Allure)
+      - name: Install Allure
+        run: |
+          wget https://github.com/allure-framework/allure2/releases/download/2.33.0/allure-2.33.0.tgz
+          tar -zxvf allure-2.33.0.tgz -C /opt/
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+          allure --version # Verify installation
       - name: Generate Allure report
         run: allure generate -c allure-results -o allure-report
       - name: Save Allure report
