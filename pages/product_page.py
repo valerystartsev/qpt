@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class ProductPage(BasePage):
-    page_url = None
+    page_url = 'inventory-item.html?id=0'
 
     def __init__(self, driver, product_url=None):
         super().__init__(driver)
@@ -20,4 +20,4 @@ class ProductPage(BasePage):
     def add_to_cart_button_is_enabled(self):
         button = self.find(loc.add_to_cart_button).is_enabled()
         # WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(button))
-        return button.is_enabled()
+        return button #.is_enabled()
