@@ -54,7 +54,7 @@ jobs:
       - name: check unzip
         run: ls -l /opt
       - name: make link
-        run: sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
+        run: sudo ln -s /opt/allure-2.33.0/bin/allure /usr/local/bin/allure
       - name: check PATH
         run: echo $PATH
       - name: check allure
