@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Check out autotests
         uses: actions/checkout@v6
-      - name: Set up Python env:
+      - name: Set up Python env
         uses: actions/setup-python@v6
         with:
            python-version: '3.14'
