@@ -64,10 +64,10 @@ jobs:
           path: _site
           retention-days: 2
           
- publish-report:
-   name: Report publication 
-   runs-on: ubuntu-latest
-   steps:
+  publish-report:
+    name: Report publication 
+    runs-on: ubuntu-latest
+    steps:
      - name: Download artifacts
        uses: actions/download-artifact@v8
      - name: Upload Pages artifact
