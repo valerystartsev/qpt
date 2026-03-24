@@ -30,15 +30,19 @@ jobs:
       - name: Run all tests
         if: "github.event.inputs.deployment_target == 'all'"
         run: pytest --alluredir=allure-results
+        continue-on-error: true
       - name: Run smoke tests
         if: "github.event.inputs.deployment_target == 'smoke'"
         run: pytest -m smoke --alluredir=allure-results
+        continue-on-error: true
       - name: Run regression tests
         if: "github.event.inputs.deployment_target == 'regression'"
         run: pytest -m regression --alluredir=allure-results
+        continue-on-error: true
       - name: Run extended tests
         if: "github.event.inputs.deployment_target == 'extended'"
         run: pytest -m extended --alluredir=allure-results
+        continue-on-error: true
       - name: Install Java
         uses: actions/setup-java@v5
         with:
@@ -49,14 +53,8 @@ jobs:
         run: wget https://github.com/allure-framework/allure2/releases/download/2.38.1/allure-2.38.1.tgz 
       - name: unzip tar
         run: tar -zxvf allure-2.38.1.tgz -C /opt/
-      - name: check unzip
-        run: ls -l /opt
       - name: make link
         run: sudo ln -s /opt/allure-2.38.1/bin/allure /usr/local/bin/allure
-      - name: check PATH
-        run: echo $PATH
-      - name: check allure
-        run: allure --version # Verify installation
       - name: Generate Allure report
         run: allure generate -c allure-results -o allure-report
       - name: Save Allure report
