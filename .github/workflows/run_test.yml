@@ -78,6 +78,8 @@ jobs:
        uses: actions/download-artifact@v8
      - name: Upload Pages artifact
        uses: actions/upload-pages-artifact@v4
+       with:
+         path: _site
      - name: Deploy to github Pages
        id: deployment
        uses: actions/deploy-pages@v4
