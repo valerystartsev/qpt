@@ -61,8 +61,11 @@ jobs:
       - name: make link
         run: sudo ln -s /opt/allure-2.38.1/bin/allure /usr/local/bin/allure
       - name: Generate Allure report
-        run: allure generate -c allure-results -o _site
+        run: allure generate -c allure-results -o _site || mkdir -p _site
+      - name: Check if _site directory exists
+        run: ls -la _site
       - name: Save Allure report
+        if: always()
         uses: actions/upload-artifact@v6
         with:
           name: _site
