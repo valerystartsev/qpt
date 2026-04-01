@@ -1,4 +1,4 @@
-name: Python autotests
+name: Python autotests YAML
 
 on:
   workflow_dispatch:
@@ -22,7 +22,7 @@ permissions:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-    name: Run auto tests
+    name: Run python UI auto tests
     steps:
       - name: Check out autotests
         uses: actions/checkout@v6
