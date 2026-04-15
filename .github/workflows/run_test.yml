@@ -78,7 +78,10 @@ jobs:
       - name: make link
         run: sudo ln -s /opt/allure-2.38.1/bin/allure /usr/local/bin/allure
       - name: Download artifacts
-        uses: actions/download-artifact@v8        
+        uses: actions/download-artifact@v8    
+        with:
+          name: allure-results
+          path: allure-results
       - name: Generate Allure report
         run: allure generate -c allure-results -o _site 
       - name: Check if _site directory exists
