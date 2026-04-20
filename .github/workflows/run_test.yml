@@ -80,10 +80,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Download artifacts
-        uses: actions/download-artifact@v8    
-        with:
-          name: allure-results
-          path: allure-results  
+        uses: actions/download-artifact@v8      
       - name: Run all tests
         if: "github.event.inputs.deployment_target == 'all'"
         run: pytest --alluredir=allure-results
