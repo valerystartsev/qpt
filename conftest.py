@@ -38,8 +38,25 @@ def driver():
     yield chrome_driver
     # filename = f'{str(random.randint(100, 10000))}.png'
     # chrome_driver.save_screenshot(filename)
-    allure.attach(chrome_driver.get_screenshot_as_png(), name="Screenshot", attachment_type=AttachmentType.PNG)
+    # Check if the test failed, then take a screenshot
+    #if request.node.rep_call.failed:
+    #    allure.attach(chrome_driver.get_screenshot_as_png(),
+    #                  name="Screenshot",
+    #                  attachment_type=AttachmentType.PNG)
 
+    chrome_driver.quit()
+
+def pytest_runtest_makereport(item, call):
+    """ Capture the result of the test (pass/fail) after it runs """
+    if call.when == 'call' and call.excinfo is not None:
+        # Test failed, take a screenshot
+        driver = item.funcargs.get('driver')
+        if driver:
+            allure.attach(
+                driver.get_screenshot_as_png(),
+                name="Screenshot",
+                attachment_type=AttachmentType.PNG
+            )
 
 @pytest.fixture()
 def login_page(driver):
