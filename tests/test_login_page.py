@@ -12,7 +12,7 @@ def test_incorrect_pass(login_page):
 @pytest.mark.regression
 def test_locked_pass(login_page):
     login_page.open()
-    login_page.fill_login_form(login='locked_out_user2', passw='secret_sauce')
+    login_page.fill_login_form(login='locked_out_user', passw='secret_sauce')
     assert login_page.error_text == (
         'Epic sadface: Sorry, this user has been locked out.'
     )
