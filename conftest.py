@@ -15,11 +15,23 @@ from allure_commons.types import AttachmentType
 @pytest.fixture()
 def driver():
     options = Options()
-    options.add_argument('--headless=new')
+
+    #options = ChromiumOptions()
+    # Set preferences
+    chrome_prefs = {
+        "credentials_enable_service": False,
+        "profile.password_manager_enabled": False,
+        "profile.password_manager_leak_detection": False  # Important preference
+    }
+    options.add_experimental_option('prefs', chrome_prefs)
+
+    #options.add_argument('--headless=new')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-gpu')
-    options.add_argument('--window-size=1920,1080')
+    options.add_argument('--window-size=1280,800')
+
+
     chrome_driver = webdriver.Chrome(options=options)
     # sleep(3)
     chrome_driver.implicitly_wait(5)
