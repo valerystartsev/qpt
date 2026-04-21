@@ -60,7 +60,7 @@ jobs:
       - name: Store allure history
         uses: actions/upload-artifact@v6
         with:
-          name: allure-results
+          name: allure-results-prev
           path: allure-results
           retention-days: 1
 
@@ -80,7 +80,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Download artifacts
-        uses: actions/download-artifact@v8      
+        uses: actions/download-artifact@v8 
+        with:
+          name: allure-results-prev
+          path: allure-results
       - name: Run all tests
         if: "github.event.inputs.deployment_target == 'all'"
         run: pytest --alluredir=allure-results
