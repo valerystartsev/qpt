@@ -1,3 +1,77 @@
 name: Auto test ver 2(with standart actions)
 
+# when to run
 on:
+  push: # when commin to main done
+    branches:
+      - main
+  pull_request: # when pull request to main done
+    branches:
+      - main    
+  workflow_dispatch: # manual from guthub Actions
+    inputs:
+      deployment_target:
+        description: Choose tests set
+        required: true
+        type: choice
+        default: smoke
+        options:
+          - smoke
+          - regression
+          - extended
+          - all
+
+permissions: 
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check-out repository
+        uses: actions/checkout@v4
+
+      - name: install python
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: '3.14'
+       
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip 
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: |
+          pytest -m regression --alluredir=allure-results --numprocesses=2
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure Report with history
+        uses: simple-elf/allure-report-action@v1.13
+        if: always()
+        with:
+          allure_results: allure-results
+          allure_history: allure-history
+
+      - name: Deploy to github pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+          
+          
+          
+          
+    
