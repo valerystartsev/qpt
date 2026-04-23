@@ -46,7 +46,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest3 -m regression --alluredir=allure-results --numprocesses=2
+          pytest -m regression --alluredir=allure-results --numprocesses=2
 
       - name: Get Allure history
         uses: actions/checkout@v4
