@@ -50,7 +50,6 @@ jobs:
 
       - name: Load test report history
         uses: actions/checkout@v4
-        if: always() && github.ref == 'refs/heads/main'
         continue-on-error: true
         with:
           ref: gh-pages
