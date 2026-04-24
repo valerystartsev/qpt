@@ -71,8 +71,7 @@ jobs:
 
       - name: Build test report
         uses: simple-elf/allure-report-action@v1.13
-#        uses: ./
-#        if: always()
+        if: always()
         with:
 #          gh_pages: gh-pages
           allure_history: allure-history
