@@ -11,7 +11,7 @@ from tools.allure.stories import AllureStory
     "email, password",
     [
         ("user@mail.com", "qwqwqwqw"),
-        ("problem_user", "secret_sauce" )
+        ("problem_user", "secret_sauce" ),
         ("another@mail.com", "qwqwqwqw")
     ]
 )
