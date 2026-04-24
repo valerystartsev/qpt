@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Attempt to login with locked user, should show correct message","471","Login with locked user","tests","Fri Apr 24 22:08:41 UTC 2026","failed","Fri Apr 24 22:08:42 UTC 2026","","test_login_page","",""
+"","609","Check Sale page is visible","tests","Fri Apr 24 22:08:42 UTC 2026","passed","Fri Apr 24 22:08:43 UTC 2026","","test_sale_page","",""
+"Login with wrong password","442","Login with wrong password","tests","Fri Apr 24 22:08:40 UTC 2026","passed","Fri Apr 24 22:08:40 UTC 2026","","test_login_page","",""
+"Login with wrong password","454","Login with wrong password","tests","Fri Apr 24 22:08:40 UTC 2026","passed","Fri Apr 24 22:08:41 UTC 2026","","test_login_page","",""
+"","1616","Check Add to Card button is enabled ","tests","Fri Apr 24 22:08:38 UTC 2026","passed","Fri Apr 24 22:08:39 UTC 2026","","test_add_to_cart","",""
