@@ -61,8 +61,9 @@ jobs:
         run: pytest -m extended --alluredir=allure-results
         continue-on-error: true
 
-      - name: Load test report history
+      - name: Load test report history to gh-pages
         uses: actions/checkout@v4
+        if always()
         continue-on-error: true
         with:
           ref: gh-pages
