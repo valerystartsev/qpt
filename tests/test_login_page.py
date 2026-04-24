@@ -40,7 +40,7 @@ def test_incorrect_pass(login_page, email: str, password: str ):
 @allure.severity(Severity.CRITICAL)
 def test_locked_pass(login_page):
     login_page.open()
-    login_page.fill_login_form(login='locked_out_user', passw='secret_sauce')
+    login_page.fill_login_form(login='locked_out_user1', passw='secret_sauce')
     assert login_page.error_text == (
         'Epic sadface: Sorry, this user has been locked out.'
     )
