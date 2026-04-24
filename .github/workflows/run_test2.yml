@@ -63,7 +63,7 @@ jobs:
 
       - name: Load test report history to gh-pages
         uses: actions/checkout@v4
-        if always()
+#        if always()
         continue-on-error: true
         with:
           ref: gh-pages
