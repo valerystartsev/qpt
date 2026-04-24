@@ -32,12 +32,12 @@ jobs:
 
     steps:
       - name: check-out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: install python
         uses: actions/setup-python@v6.2.0
         with:
-          python-version: '3.12'
+          python-version: '3.14'
        
       - name: Install dependencies
         run: |
@@ -62,7 +62,7 @@ jobs:
         continue-on-error: true
 
       - name: Load test report history to gh-pages
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 #        if always()
         continue-on-error: true
         with:
